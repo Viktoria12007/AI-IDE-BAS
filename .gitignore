@@ -1,2 +1,14 @@
 .idea
-database.db
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+
+# SQLite
+*.sqlite3
+*.db
+
