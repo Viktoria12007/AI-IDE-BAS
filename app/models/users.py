@@ -1,6 +1,7 @@
 from sqlmodel import Field, SQLModel
 from sqlalchemy import Column, DateTime, func
 from datetime import datetime
+from pydantic import EmailStr
 
 
 class TimestampMixin(SQLModel):
@@ -24,14 +25,14 @@ class TimestampMixin(SQLModel):
 
 class UserCreate(SQLModel):
     username: str
-    email: str
+    email: EmailStr
     password: str
 
 
 class User(TimestampMixin, table=True):
     id: int | None = Field(default=None, primary_key=True)
     username: str = Field(index=True, unique=True)
-    email: str = Field(unique=True)
+    email: EmailStr = Field(unique=True)
     password: str = Field()
 
 
@@ -43,5 +44,5 @@ class UserPublic(TimestampMixin):
 
 class UserUpdate(UserCreate):
     username: str | None = None
-    email: str | None = None
+    email: EmailStr | None = None
     password: str | None = None
